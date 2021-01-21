@@ -55,7 +55,9 @@ let spaceship: Sprite = null
 let dart: Sprite = null
 game.splash("Level 1", "Score 10 to move on")
 timer.background(function () {
-	
+    while (false) {
+    	
+    }
 })
 game.onUpdateInterval(500, function () {
     bogey = sprites.create(img`
