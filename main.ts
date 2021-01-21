@@ -249,11 +249,14 @@ timer.background(function () {
         ....ffffffffffffffffffff....
         ....ffffffffffffffffffff....
         `, SpriteKind.Boss)
+    Boss.setPosition(123, 57)
     statusbar = statusbars.create(20, 4, StatusBarKind.Health)
     statusbar.positionDirection(CollisionDirection.Top)
     statusbar.value = 45
     statusbar.setLabel("HP")
     statusbar.setColor(7, 2)
+    Boss.setVelocity(0, -50)
+    Boss.setFlag(SpriteFlag.BounceOnWall, true)
 })
 game.onUpdateInterval(5000, function () {
     if (2 <= levelcount) {
@@ -308,26 +311,50 @@ game.onUpdateInterval(2000, function () {
     }
 })
 game.onUpdateInterval(500, function () {
-    bogey = sprites.create(img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . f f f f f f f f f . . . 
-        . . . f f 2 2 2 2 2 2 2 f f . . 
-        . . f f 2 2 2 2 2 2 2 2 2 f . . 
-        . . f f 2 2 2 2 2 2 2 2 2 f . . 
-        . f f 2 f f f 2 2 2 2 2 2 f f . 
-        . f 2 2 f 1 f 2 2 2 2 2 2 2 f . 
-        . f 2 2 f f f 2 2 2 2 2 2 2 f . 
-        . f 2 2 2 2 2 2 2 2 2 2 2 2 f . 
-        . f 2 2 2 f f f f f 2 2 2 2 f . 
-        . f f 2 2 2 2 2 2 2 2 2 2 f f . 
-        . . f f 2 2 2 2 2 2 2 2 f f . . 
-        . . . f f 2 2 2 2 2 f f f . . . 
-        . . . . f f f f f f f . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `, SpriteKind.Enemy)
-    bogey.setVelocity(-100, 0)
-    bogey.left = scene.screenWidth()
-    bogey.y = randint(0, scene.screenHeight())
-    bogey.setFlag(SpriteFlag.AutoDestroy, true)
+    if (4 > levelcount) {
+        bogey = sprites.create(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . f f f f f f f f f . . . 
+            . . . f f 2 2 2 2 2 2 2 f f . . 
+            . . f f 2 2 2 2 2 2 2 2 2 f . . 
+            . . f f 2 2 2 2 2 2 2 2 2 f . . 
+            . f f 2 f f f 2 2 2 2 2 2 f f . 
+            . f 2 2 f 1 f 2 2 2 2 2 2 2 f . 
+            . f 2 2 f f f 2 2 2 2 2 2 2 f . 
+            . f 2 2 2 2 2 2 2 2 2 2 2 2 f . 
+            . f 2 2 2 f f f f f 2 2 2 2 f . 
+            . f f 2 2 2 2 2 2 2 2 2 2 f f . 
+            . . f f 2 2 2 2 2 2 2 2 f f . . 
+            . . . f f 2 2 2 2 2 f f f . . . 
+            . . . . f f f f f f f . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, SpriteKind.Enemy)
+        bogey.setVelocity(-100, 0)
+        bogey.left = scene.screenWidth()
+        bogey.y = randint(0, scene.screenHeight())
+        bogey.setFlag(SpriteFlag.AutoDestroy, true)
+    } else {
+        bogey = sprites.create(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . f f f f f f f f f . . . 
+            . . . f f 2 2 2 2 2 2 2 f f . . 
+            . . f f 2 2 2 2 2 2 2 2 2 f . . 
+            . . f f 2 2 2 2 2 2 2 2 2 f . . 
+            . f f 2 f f f 2 2 2 2 2 2 f f . 
+            . f 2 2 f 1 f 2 2 2 2 2 2 2 f . 
+            . f 2 2 f f f 2 2 2 2 2 2 2 f . 
+            . f 2 2 2 2 2 2 2 2 2 2 2 2 f . 
+            . f 2 2 2 f f f f f 2 2 2 2 f . 
+            . f f 2 2 2 2 2 2 2 2 2 2 f f . 
+            . . f f 2 2 2 2 2 2 2 2 f f . . 
+            . . . f f 2 2 2 2 2 f f f . . . 
+            . . . . f f f f f f f . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, SpriteKind.Enemy)
+        bogey.setPosition(Boss.x, Boss.y)
+        bogey.setVelocity(-100, 0)
+        bogey.setFlag(SpriteFlag.AutoDestroy, true)
+    }
 })
