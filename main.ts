@@ -58,14 +58,72 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.FastEnemy, function (sprite,
     info.changeScoreBy(3)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.FastEnemy, function (sprite, otherSprite) {
+    spaceship.setImage(img`
+        . . f f f f f f f f f f f f . . 
+        . . f 5 5 5 5 5 5 5 5 5 5 f f . 
+        . f 5 5 5 5 5 5 f 5 5 5 f 5 f f 
+        f 5 5 5 5 5 5 5 f f f f f 5 5 f 
+        f 5 5 5 5 5 5 9 5 5 5 5 5 5 5 f 
+        f 5 5 5 5 5 5 9 5 5 5 5 5 5 5 f 
+        f 5 5 5 5 5 9 5 5 5 5 5 f f f . 
+        f 5 5 5 5 5 5 5 5 5 5 f 5 5 5 f 
+        f 5 5 5 5 5 5 5 5 5 f 5 5 5 5 f 
+        . f 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
+        . . f 5 5 5 5 5 5 5 5 5 5 f f f 
+        . . f f f f f f f f f f f f . . 
+        `)
     music.powerDown.play()
     otherSprite.destroy(effects.fire, 500)
     info.changeLifeBy(-1)
+    pause(500)
+    spaceship.setImage(img`
+        . . f f f f f f f f f f f f . . 
+        . . f 5 5 5 5 5 5 5 5 5 5 f f . 
+        . f 5 5 5 5 5 5 5 f f f 5 5 f f 
+        f 5 5 5 5 5 5 5 5 f 1 f 5 5 5 f 
+        f 5 5 5 5 5 5 5 5 f f f 5 5 5 f 
+        f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
+        f 5 5 5 5 5 5 5 5 5 5 5 f f f . 
+        f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
+        f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
+        . f 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
+        . . f 5 5 5 5 5 5 5 5 5 5 f f f 
+        . . f f f f f f f f f f f f . . 
+        `)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
+    spaceship.setImage(img`
+        . . f f f f f f f f f f f f . . 
+        . . f 5 5 5 5 5 5 5 5 5 5 f f . 
+        . f 5 5 5 5 5 5 5 5 5 5 5 5 f f 
+        f 5 5 5 5 5 5 5 f f f f f 5 5 f 
+        f 5 5 5 5 5 5 5 f 5 5 5 f 5 5 f 
+        f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
+        f 5 5 5 5 5 5 5 5 5 5 5 f f f . 
+        f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
+        f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
+        . f 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
+        . . f 5 5 5 5 5 5 5 5 5 5 f f f 
+        . . f f f f f f f f f f f f . . 
+        `)
     music.powerUp.play()
     otherSprite.destroy(effects.hearts, 500)
     info.changeLifeBy(1)
+    pause(200)
+    spaceship.setImage(img`
+        . . f f f f f f f f f f f f . . 
+        . . f 5 5 5 5 5 5 5 5 5 5 f f . 
+        . f 5 5 5 5 5 5 5 f f f 5 5 f f 
+        f 5 5 5 5 5 5 5 5 f 1 f 5 5 5 f 
+        f 5 5 5 5 5 5 5 5 f f f 5 5 5 f 
+        f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
+        f 5 5 5 5 5 5 5 5 5 5 5 f f f . 
+        f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
+        f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
+        . f 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
+        . . f 5 5 5 5 5 5 5 5 5 5 f f f 
+        . . f f f f f f f f f f f f . . 
+        `)
 })
 function start () {
     spaceship = sprites.create(img`
@@ -92,9 +150,38 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, oth
     info.changeScoreBy(1)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    spaceship.setImage(img`
+        . . f f f f f f f f f f f f . . 
+        . . f 5 5 5 5 5 5 5 5 5 5 f f . 
+        . f 5 5 5 5 5 5 f 5 5 5 f 5 f f 
+        f 5 5 5 5 5 5 5 f f f f f 5 5 f 
+        f 5 5 5 5 5 5 9 5 5 5 5 5 5 5 f 
+        f 5 5 5 5 5 5 9 5 5 5 5 5 5 5 f 
+        f 5 5 5 5 5 9 5 5 5 5 5 f f f . 
+        f 5 5 5 5 5 5 5 5 5 5 f 5 5 5 f 
+        f 5 5 5 5 5 5 5 5 5 f 5 5 5 5 f 
+        . f 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
+        . . f 5 5 5 5 5 5 5 5 5 5 f f f 
+        . . f f f f f f f f f f f f . . 
+        `)
     music.powerDown.play()
     otherSprite.destroy(effects.fire, 500)
     info.changeLifeBy(-1)
+    pause(500)
+    spaceship.setImage(img`
+        . . f f f f f f f f f f f f . . 
+        . . f 5 5 5 5 5 5 5 5 5 5 f f . 
+        . f 5 5 5 5 5 5 5 f f f 5 5 f f 
+        f 5 5 5 5 5 5 5 5 f 1 f 5 5 5 f 
+        f 5 5 5 5 5 5 5 5 f f f 5 5 5 f 
+        f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
+        f 5 5 5 5 5 5 5 5 5 5 5 f f f . 
+        f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
+        f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
+        . f 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
+        . . f 5 5 5 5 5 5 5 5 5 5 f f f 
+        . . f f f f f f f f f f f f . . 
+        `)
 })
 let bogey: Sprite = null
 let Speed_Sprite: Sprite = null
