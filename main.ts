@@ -53,10 +53,33 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 let bogey: Sprite = null
 let spaceship: Sprite = null
 let dart: Sprite = null
+let levelcount = 0
+start()
 game.splash("Level 1", "Score 10 to move on")
 timer.background(function () {
-    while (false) {
-    	
+    while (info.score() < 10) {
+        pause(100)
+    }
+    if (info.score() == 10) {
+        info.setScore(0)
+        info.setLife(3)
+        game.splash("Level 2", "Score 20 to move on")
+    }
+    while (info.score() < 20) {
+        pause(100)
+    }
+    if (info.score() == 20) {
+        info.setScore(0)
+        info.setLife(3)
+        game.splash("Level 3", "Score 30 to move on")
+    }
+    while (info.score() < 30) {
+        pause(100)
+    }
+    if (info.score() == 30) {
+        info.setScore(0)
+        info.setLife(3)
+        game.splash("Level 4", "Score Defeat the Boss to Win")
     }
 })
 game.onUpdateInterval(500, function () {
