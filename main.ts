@@ -52,6 +52,44 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . f f f f f f f f f f f f . . 
         `)
 })
+function BossBattle () {
+    Boss = sprites.create(img`
+        1111ffffffffffffffffffff....
+        1111ffffffffffffffffffff....
+        11ffff2222222222222222ff....
+        11ffff2222222222222222ff....
+        ffff2222ffffff2222222222ff..
+        ffff2222ffffff2222222222ff..
+        ff222222ff22ff222222222222ff
+        ff222222ff22ff222222222222ff
+        ..ff2222ffffff222222222222ff
+        ..ff2222ffffff222222222222ff
+        ....ff22222222222222222222ff
+        ....ff22222222222222222222ff
+        ......ff222222222222222222ff
+        ......ff222222222222222222ff
+        ....ff22222222222222222222ff
+        ....ff22222222222222222222ff
+        ..ff2222222222222222222222ff
+        ..ff2222222222222222222222ff
+        ff222222222222222222222222ff
+        ff222222222222222222222222ff
+        ff2222222222222222222222ff..
+        ff2222222222222222222222ff..
+        ffffff2222222222222222ff....
+        ffffff2222222222222222ff....
+        ....ffffffffffffffffffff....
+        ....ffffffffffffffffffff....
+        `, SpriteKind.Boss)
+    Boss.setPosition(123, 57)
+    statusbar = statusbars.create(20, 4, StatusBarKind.Health)
+    statusbar.positionDirection(CollisionDirection.Top)
+    statusbar.value = 45
+    statusbar.setLabel("HP")
+    statusbar.setColor(7, 2)
+    Boss.setVelocity(0, -50)
+    Boss.setFlag(SpriteFlag.BounceOnWall, true)
+}
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.FastEnemy, function (sprite, otherSprite) {
     otherSprite.destroy()
     sprite.destroy(effects.fire, 100)
@@ -186,10 +224,10 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 let bogey: Sprite = null
 let Speed_Sprite: Sprite = null
 let Life: Sprite = null
-let dart: Sprite = null
-let spaceship: Sprite = null
 let statusbar: StatusBarSprite = null
 let Boss: Sprite = null
+let dart: Sprite = null
+let spaceship: Sprite = null
 start()
 let levelcount = 1
 game.splash("Level 1", "Score 10 to move on")
@@ -221,42 +259,7 @@ timer.background(function () {
         levelcount += 1
         game.splash("Level 4", "Score Defeat the Boss to Win")
     }
-    Boss = sprites.create(img`
-        1111ffffffffffffffffffff....
-        1111ffffffffffffffffffff....
-        11ffff2222222222222222ff....
-        11ffff2222222222222222ff....
-        ffff2222ffffff2222222222ff..
-        ffff2222ffffff2222222222ff..
-        ff222222ff22ff222222222222ff
-        ff222222ff22ff222222222222ff
-        ..ff2222ffffff222222222222ff
-        ..ff2222ffffff222222222222ff
-        ....ff22222222222222222222ff
-        ....ff22222222222222222222ff
-        ......ff222222222222222222ff
-        ......ff222222222222222222ff
-        ....ff22222222222222222222ff
-        ....ff22222222222222222222ff
-        ..ff2222222222222222222222ff
-        ..ff2222222222222222222222ff
-        ff222222222222222222222222ff
-        ff222222222222222222222222ff
-        ff2222222222222222222222ff..
-        ff2222222222222222222222ff..
-        ffffff2222222222222222ff....
-        ffffff2222222222222222ff....
-        ....ffffffffffffffffffff....
-        ....ffffffffffffffffffff....
-        `, SpriteKind.Boss)
-    Boss.setPosition(123, 57)
-    statusbar = statusbars.create(20, 4, StatusBarKind.Health)
-    statusbar.positionDirection(CollisionDirection.Top)
-    statusbar.value = 45
-    statusbar.setLabel("HP")
-    statusbar.setColor(7, 2)
-    Boss.setVelocity(0, -50)
-    Boss.setFlag(SpriteFlag.BounceOnWall, true)
+    BossBattle()
 })
 game.onUpdateInterval(5000, function () {
     if (2 <= levelcount) {
