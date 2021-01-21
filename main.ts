@@ -3,7 +3,6 @@ namespace SpriteKind {
     export const Boss = SpriteKind.create()
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    let spaceship: Sprite = null
     music.pewPew.play()
     dart = sprites.createProjectileFromSprite(img`
         . . . . . . . . . . . . . . . . 
@@ -39,6 +38,25 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
     otherSprite.destroy(effects.hearts, 500)
     info.changeLifeBy(1)
 })
+function start () {
+    spaceship = sprites.create(img`
+        . . f f f f f f f f f f f f . . 
+        . . f 5 5 5 5 5 5 5 5 5 5 f f . 
+        . f 5 5 5 5 5 5 5 f f f 5 5 f f 
+        f 5 5 5 5 5 5 5 5 f 1 f 5 5 5 f 
+        f 5 5 5 5 5 5 5 5 f f f 5 5 f . 
+        f 5 5 5 5 5 5 5 5 5 5 5 5 f . . 
+        f 5 5 5 5 5 5 5 5 5 5 5 f . . . 
+        f 5 5 5 5 5 5 5 5 5 5 5 5 f . . 
+        f 5 5 5 5 5 5 5 5 5 5 5 5 5 f . 
+        . f 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
+        . . f 5 5 5 5 5 5 5 5 5 5 f f f 
+        . . f f f f f f f f f f f f . . 
+        `, SpriteKind.Player)
+    Boss.setFlag(SpriteFlag.StayInScreen, true)
+    info.setLife(3)
+    controller.moveSprite(spaceship, 200, 200)
+}
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     otherSprite.destroy()
     sprite.destroy(effects.fire, 100)
@@ -52,9 +70,11 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 let bogey: Sprite = null
 let Speed_Sprite: Sprite = null
 let Life: Sprite = null
+let spaceship: Sprite = null
 let dart: Sprite = null
 let statusbar: StatusBarSprite = null
 let Boss: Sprite = null
+start()
 let levelcount = 1
 game.splash("Level 1", "Score 10 to move on")
 timer.background(function () {
