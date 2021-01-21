@@ -109,7 +109,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
     music.powerUp.play()
     otherSprite.destroy(effects.hearts, 500)
     info.changeLifeBy(1)
-    pause(200)
+    pause(500)
     spaceship.setImage(img`
         . . f f f f f f f f f f f f . . 
         . . f 5 5 5 5 5 5 5 5 5 5 f f . 
