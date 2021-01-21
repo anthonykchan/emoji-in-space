@@ -68,21 +68,6 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
             `, spaceship, 200, 0)
-        pause(200)
-        spaceship.setImage(img`
-            . . f f f f f f f f f f f f . . 
-            . . f 5 5 5 5 5 5 5 5 5 5 f f . 
-            . f 5 5 5 5 5 5 5 f f f 5 5 f f 
-            f 5 5 5 5 5 5 5 5 f 1 f 5 5 5 f 
-            f 5 5 5 5 5 5 5 5 f f f 5 5 5 f 
-            f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
-            f 5 5 5 5 5 5 5 5 5 5 5 f f f . 
-            f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
-            f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
-            . f 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
-            . . f 5 5 5 5 5 5 5 5 5 5 f f f 
-            . . f f f f f f f f f f f f . . 
-            `)
     })
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Boss, function (sprite, otherSprite) {
@@ -169,6 +154,22 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.FastEnemy, function (sprite, oth
             . . f f f f f f f f f f f f . . 
             `)
     })
+})
+controller.B.onEvent(ControllerButtonEvent.Released, function () {
+    spaceship.setImage(img`
+        . . f f f f f f f f f f f f . . 
+        . . f 5 5 5 5 5 5 5 5 5 5 f f . 
+        . f 5 5 5 5 5 5 5 f f f 5 5 f f 
+        f 5 5 5 5 5 5 5 5 f 1 f 5 5 5 f 
+        f 5 5 5 5 5 5 5 5 f f f 5 5 5 f 
+        f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
+        f 5 5 5 5 5 5 5 5 5 5 5 f f f . 
+        f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
+        f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
+        . f 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
+        . . f 5 5 5 5 5 5 5 5 5 5 f f f 
+        . . f f f f f f f f f f f f . . 
+        `)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     timer.background(function () {
@@ -403,6 +404,7 @@ let statusbar: StatusBarSprite = null
 let dart: Sprite = null
 let spaceship: Sprite = null
 let levelcount = 0
+game.splash("Press B to Shoot and use", "the Arrow Keys to Move")
 start()
 timer.background(function () {
     Levels()
