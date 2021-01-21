@@ -2,6 +2,7 @@ namespace SpriteKind {
     export const FastEnemy = SpriteKind.create()
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    music.pewPew.play()
     dart = sprites.createProjectileFromSprite(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
@@ -27,10 +28,12 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.FastEnemy, function (sprite,
     info.changeScoreBy(3)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.FastEnemy, function (sprite, otherSprite) {
+    music.powerDown.play()
     otherSprite.destroy(effects.fire, 500)
     info.changeLifeBy(-1)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
+    music.powerUp.play()
     otherSprite.destroy(effects.hearts, 500)
     info.changeLifeBy(1)
 })
@@ -63,6 +66,7 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, oth
     info.changeScoreBy(1)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    music.powerDown.play()
     otherSprite.destroy(effects.fire, 500)
     info.changeLifeBy(-1)
 })
@@ -71,7 +75,7 @@ let Speed_Sprite: Sprite = null
 let Life: Sprite = null
 let spaceship: Sprite = null
 let dart: Sprite = null
-let levelcount = 0
+let levelcount = 1
 start()
 game.splash("Level 1", "Score 10 to move on")
 timer.background(function () {
@@ -81,6 +85,7 @@ timer.background(function () {
     if (info.score() == 10) {
         info.setScore(0)
         info.setLife(3)
+        levelcount += 1
         game.splash("Level 2", "Score 20 to move on")
     }
     while (info.score() < 20) {
@@ -89,6 +94,7 @@ timer.background(function () {
     if (info.score() == 20) {
         info.setScore(0)
         info.setLife(3)
+        levelcount += 1
         game.splash("Level 3", "Score 30 to move on")
     }
     while (info.score() < 30) {
@@ -97,6 +103,7 @@ timer.background(function () {
     if (info.score() == 30) {
         info.setScore(0)
         info.setLife(3)
+        levelcount += 1
         game.splash("Level 4", "Score Defeat the Boss to Win")
     }
 })
@@ -146,7 +153,7 @@ game.onUpdateInterval(2000, function () {
             . . . . f f f f f f f . . . . . 
             . . . . . . . . . . . . . . . . 
             `, SpriteKind.FastEnemy)
-        Speed_Sprite.setVelocity(-100, 0)
+        Speed_Sprite.setVelocity(-200, 0)
         Speed_Sprite.left = scene.screenWidth()
         Speed_Sprite.y = randint(0, scene.screenHeight())
         Speed_Sprite.setFlag(SpriteFlag.AutoDestroy, true)
