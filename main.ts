@@ -33,22 +33,22 @@ function Levels () {
     }
     BossBattle()
 }
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    spaceship.setImage(img`
-        . . f f f f f f f f f f f f . . 
-        . . f 5 5 5 5 5 5 5 5 5 5 f f . 
-        . f 5 5 5 5 5 5 5 f f f 5 5 f f 
-        f 5 5 5 5 5 5 5 5 f 1 f 5 5 5 f 
-        f 5 5 5 5 5 5 5 5 f f f 5 5 f . 
-        f 5 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        f 5 5 5 5 5 5 5 5 5 5 5 f . . . 
-        f 5 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        f 5 5 5 5 5 5 5 5 5 5 5 5 5 f . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
-        . . f 5 5 5 5 5 5 5 5 5 5 f f f 
-        . . f f f f f f f f f f f f . . 
-        `)
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     timer.background(function () {
+        spaceship.setImage(img`
+            . . f f f f f f f f f f f f . . 
+            . . f 5 5 5 5 5 5 5 5 5 5 f f . 
+            . f 5 5 5 5 5 5 5 f f f 5 5 f f 
+            f 5 5 5 5 5 5 5 5 f 1 f 5 5 5 f 
+            f 5 5 5 5 5 5 5 5 f f f 5 5 f . 
+            f 5 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            f 5 5 5 5 5 5 5 5 5 5 5 f . . . 
+            f 5 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            f 5 5 5 5 5 5 5 5 5 5 5 5 5 f . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
+            . . f 5 5 5 5 5 5 5 5 5 5 f f f 
+            . . f f f f f f f f f f f f . . 
+            `)
         music.pewPew.play()
         dart = sprites.createProjectileFromSprite(img`
             . . . . . . . . . . . . . . . . 
