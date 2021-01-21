@@ -3,6 +3,20 @@ namespace SpriteKind {
     export const Boss = SpriteKind.create()
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    spaceship.setImage(img`
+        . . f f f f f f f f f f f f . . 
+        . . f 5 5 5 5 5 5 5 5 5 5 f f . 
+        . f 5 5 5 5 5 5 5 f f f 5 5 f f 
+        f 5 5 5 5 5 5 5 5 f 1 f 5 5 5 f 
+        f 5 5 5 5 5 5 5 5 f f f 5 5 f . 
+        f 5 5 5 5 5 5 5 5 5 5 5 5 f . . 
+        f 5 5 5 5 5 5 5 5 5 5 5 f . . . 
+        f 5 5 5 5 5 5 5 5 5 5 5 5 f . . 
+        f 5 5 5 5 5 5 5 5 5 5 5 5 5 f . 
+        . f 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
+        . . f 5 5 5 5 5 5 5 5 5 5 f f f 
+        . . f f f f f f f f f f f f . . 
+        `)
     music.pewPew.play()
     dart = sprites.createProjectileFromSprite(img`
         . . . . . . . . . . . . . . . . 
@@ -22,6 +36,21 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         `, spaceship, 200, 0)
+    pause(200)
+    spaceship.setImage(img`
+        . . f f f f f f f f f f f f . . 
+        . . f 5 5 5 5 5 5 5 5 5 5 f f . 
+        . f 5 5 5 5 5 5 5 f f f 5 5 f f 
+        f 5 5 5 5 5 5 5 5 f 1 f 5 5 5 f 
+        f 5 5 5 5 5 5 5 5 f f f 5 5 5 f 
+        f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
+        f 5 5 5 5 5 5 5 5 5 5 5 f f f . 
+        f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
+        f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
+        . f 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
+        . . f 5 5 5 5 5 5 5 5 5 5 f f f 
+        . . f f f f f f f f f f f f . . 
+        `)
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.FastEnemy, function (sprite, otherSprite) {
     otherSprite.destroy()
@@ -44,16 +73,16 @@ function start () {
         . . f 5 5 5 5 5 5 5 5 5 5 f f . 
         . f 5 5 5 5 5 5 5 f f f 5 5 f f 
         f 5 5 5 5 5 5 5 5 f 1 f 5 5 5 f 
-        f 5 5 5 5 5 5 5 5 f f f 5 5 f . 
-        f 5 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        f 5 5 5 5 5 5 5 5 5 5 5 f . . . 
-        f 5 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        f 5 5 5 5 5 5 5 5 5 5 5 5 5 f . 
+        f 5 5 5 5 5 5 5 5 f f f 5 5 5 f 
+        f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
+        f 5 5 5 5 5 5 5 5 5 5 5 f f f . 
+        f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
+        f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
         . f 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
         . . f 5 5 5 5 5 5 5 5 5 5 f f f 
         . . f f f f f f f f f f f f . . 
         `, SpriteKind.Player)
-    Boss.setFlag(SpriteFlag.StayInScreen, true)
+    spaceship.setFlag(SpriteFlag.StayInScreen, true)
     info.setLife(3)
     controller.moveSprite(spaceship, 200, 200)
 }
@@ -70,8 +99,8 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 let bogey: Sprite = null
 let Speed_Sprite: Sprite = null
 let Life: Sprite = null
-let spaceship: Sprite = null
 let dart: Sprite = null
+let spaceship: Sprite = null
 let statusbar: StatusBarSprite = null
 let Boss: Sprite = null
 start()
