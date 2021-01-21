@@ -18,6 +18,10 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         `, spaceship, 200, 0)
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
+    otherSprite.destroy(effects.hearts, 500)
+    info.changeLifeBy(1)
+})
 function start () {
     spaceship = sprites.create(img`
         . . . . . . . . . . . . . . . . 
@@ -51,6 +55,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     info.changeLifeBy(-1)
 })
 let bogey: Sprite = null
+let Life: Sprite = null
 let spaceship: Sprite = null
 let dart: Sprite = null
 let levelcount = 0
@@ -80,6 +85,32 @@ timer.background(function () {
         info.setScore(0)
         info.setLife(3)
         game.splash("Level 4", "Score Defeat the Boss to Win")
+    }
+})
+game.onUpdateInterval(5000, function () {
+    if (2 <= levelcount) {
+        Life = sprites.create(img`
+            . . . . . . . e c 7 . . . . . . 
+            . . . . e e e c 7 7 e e . . . . 
+            . . c e e e e c 7 e 2 2 e e . . 
+            . c e e e e e c 6 e e 2 2 2 e . 
+            . c e e e 2 e c c 2 4 5 4 2 e . 
+            c e e e 2 2 2 2 2 2 4 5 5 2 2 e 
+            c e e 2 2 2 2 2 2 2 2 4 4 2 2 e 
+            c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
+            c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
+            c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
+            c e e 2 2 2 2 2 2 2 2 2 2 4 2 e 
+            . e e e 2 2 2 2 2 2 2 2 2 4 e . 
+            . 2 e e 2 2 2 2 2 2 2 2 4 2 e . 
+            . . 2 e e 2 2 2 2 2 4 4 2 e . . 
+            . . . 2 2 e e 4 4 4 2 e e . . . 
+            . . . . . 2 2 e e e e . . . . . 
+            `, SpriteKind.Food)
+        Life.setVelocity(-100, 0)
+        Life.left = scene.screenWidth()
+        Life.y = randint(0, scene.screenHeight())
+        Life.setFlag(SpriteFlag.AutoDestroy, true)
     }
 })
 game.onUpdateInterval(500, function () {
