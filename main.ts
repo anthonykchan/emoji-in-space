@@ -1,3 +1,6 @@
+namespace SpriteKind {
+    export const FastEnemy = SpriteKind.create()
+}
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     dart = sprites.createProjectileFromSprite(img`
         . . . . . . . . . . . . . . . . 
@@ -17,6 +20,15 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         `, spaceship, 200, 0)
+})
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.FastEnemy, function (sprite, otherSprite) {
+    otherSprite.destroy()
+    sprite.destroy(effects.fire, 100)
+    info.changeScoreBy(3)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.FastEnemy, function (sprite, otherSprite) {
+    otherSprite.destroy(effects.fire, 500)
+    info.changeLifeBy(-1)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     otherSprite.destroy(effects.hearts, 500)
@@ -55,6 +67,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     info.changeLifeBy(-1)
 })
 let bogey: Sprite = null
+let Speed_Sprite: Sprite = null
 let Life: Sprite = null
 let spaceship: Sprite = null
 let dart: Sprite = null
@@ -111,6 +124,32 @@ game.onUpdateInterval(5000, function () {
         Life.left = scene.screenWidth()
         Life.y = randint(0, scene.screenHeight())
         Life.setFlag(SpriteFlag.AutoDestroy, true)
+    }
+})
+game.onUpdateInterval(2000, function () {
+    if (3 == levelcount) {
+        Speed_Sprite = sprites.create(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . f f f f f f f f f . . . 
+            . . . f f 9 9 9 9 9 9 9 f f . . 
+            . . f f 9 9 9 9 9 9 9 9 9 f . . 
+            . . f f 9 9 9 9 9 9 9 9 9 f . . 
+            . f f 9 f f f 9 9 9 9 9 9 f f . 
+            . f 9 9 f 2 f 9 9 9 9 9 9 9 f . 
+            . f 9 9 f f f 9 9 9 9 9 9 9 f . 
+            . f 9 9 9 9 9 9 9 9 9 9 9 9 f . 
+            . f 9 9 9 f f f f f 9 9 9 9 f . 
+            . f f 9 9 9 9 9 9 9 9 9 9 f f . 
+            . . f f 9 9 9 9 9 9 9 9 f f . . 
+            . . . f f 9 9 9 9 9 f f f . . . 
+            . . . . f f f f f f f . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, SpriteKind.FastEnemy)
+        Speed_Sprite.setVelocity(-100, 0)
+        Speed_Sprite.left = scene.screenWidth()
+        Speed_Sprite.y = randint(0, scene.screenHeight())
+        Speed_Sprite.setFlag(SpriteFlag.AutoDestroy, true)
     }
 })
 game.onUpdateInterval(500, function () {
