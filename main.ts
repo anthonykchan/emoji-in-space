@@ -53,6 +53,7 @@ let bogey: Sprite = null
 let Speed_Sprite: Sprite = null
 let Life: Sprite = null
 let dart: Sprite = null
+let statusbar: StatusBarSprite = null
 let Boss: Sprite = null
 let levelcount = 1
 game.splash("Level 1", "Score 10 to move on")
@@ -112,6 +113,11 @@ timer.background(function () {
         ....ffffffffffffffffffff....
         ....ffffffffffffffffffff....
         `, SpriteKind.Boss)
+    statusbar = statusbars.create(20, 4, StatusBarKind.Health)
+    statusbar.positionDirection(CollisionDirection.Top)
+    statusbar.value = 45
+    statusbar.setLabel("HP")
+    statusbar.setColor(7, 2)
 })
 game.onUpdateInterval(5000, function () {
     if (2 <= levelcount) {
