@@ -308,6 +308,28 @@ game.onUpdateInterval(2000, function () {
         Speed_Sprite.left = scene.screenWidth()
         Speed_Sprite.y = randint(0, scene.screenHeight())
         Speed_Sprite.setFlag(SpriteFlag.AutoDestroy, true)
+    } else {
+        Speed_Sprite = sprites.create(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . f f f f f f f f f . . . 
+            . . . f f 9 9 9 9 9 9 9 f f . . 
+            . . f f 9 9 9 9 9 9 9 9 9 f . . 
+            . . f f 9 9 9 9 9 9 9 9 9 f . . 
+            . f f 9 f f f 9 9 9 9 9 9 f f . 
+            . f 9 9 f 2 f 9 9 9 9 9 9 9 f . 
+            . f 9 9 f f f 9 9 9 9 9 9 9 f . 
+            . f 9 9 9 9 9 9 9 9 9 9 9 9 f . 
+            . f 9 9 9 f f f f f 9 9 9 9 f . 
+            . f f 9 9 9 9 9 9 9 9 9 9 f f . 
+            . . f f 9 9 9 9 9 9 9 9 f f . . 
+            . . . f f 9 9 9 9 9 f f f . . . 
+            . . . . f f f f f f f . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, SpriteKind.FastEnemy)
+        Speed_Sprite.setPosition(Boss.x, Boss.y)
+        Speed_Sprite.setVelocity(-200, 0)
+        Speed_Sprite.setFlag(SpriteFlag.AutoDestroy, true)
     }
 })
 game.onUpdateInterval(500, function () {
