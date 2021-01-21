@@ -404,6 +404,7 @@ let statusbar: StatusBarSprite = null
 let dart: Sprite = null
 let spaceship: Sprite = null
 let levelcount = 0
+game.splash("Emoji in Space!")
 game.splash("Press B to Shoot and use", "the Arrow Keys to Move")
 start()
 timer.background(function () {
