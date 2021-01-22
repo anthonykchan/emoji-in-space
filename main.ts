@@ -180,10 +180,10 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
             f 5 5 5 5 5 5 5 f f f f f 5 5 f 
             f 5 5 5 5 5 5 5 f 5 5 5 f 5 5 f 
             f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
-            f 5 5 5 5 5 5 5 5 5 5 5 f f f . 
-            f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
-            f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
-            . f 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
+            f 5 5 5 5 5 5 5 5 5 5 f f f f . 
+            f 5 5 5 5 5 5 5 5 5 f 3 3 f 5 f 
+            f 5 5 5 5 5 5 5 5 f 3 3 f 5 5 f 
+            . f 5 5 5 5 5 5 5 5 f f 5 5 5 f 
             . . f 5 5 5 5 5 5 5 5 5 5 f f f 
             . . f f f f f f f f f f f f . . 
             `)
