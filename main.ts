@@ -114,6 +114,13 @@ function BossBattle () {
     Boss.setVelocity(0, -50)
     Boss.setFlag(SpriteFlag.BounceOnWall, true)
 }
+function Opening () {
+    game.splash("In a universe", "where evil reigns..")
+    game.splash("Only an emoji who", "breathes fireballs...")
+    game.splash("Can save it-Wait What!")
+    game.splash("Breathes fire-", "who came up with this?")
+    game.splash("Ugh Fine", "but I want a raise!")
+}
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.FastEnemy, function (sprite, otherSprite) {
     otherSprite.destroy()
     sprite.destroy(effects.fire, 100)
@@ -404,7 +411,8 @@ let statusbar: StatusBarSprite = null
 let dart: Sprite = null
 let spaceship: Sprite = null
 let levelcount = 0
-game.splash("Emoji in Space!")
+Opening()
+game.splash("Emoji in Space!", "(Wait What? That doesn't make sense!)")
 game.splash("Press B to Shoot and use", "the Arrow Keys to Move")
 start()
 timer.background(function () {
